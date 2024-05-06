@@ -95,7 +95,7 @@ class SensorsPlugin : FlutterPlugin {
             sensorsManager,
             Sensor.TYPE_HEART_RATE
         )
-        heartrateChannel.setStreamHandler(accelerometerStreamHandler)
+        heartrateChannel.setStreamHandler(heartrateStreamHandler)
     }
 
     private fun teardownEventChannels() {
