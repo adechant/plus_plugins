@@ -68,3 +68,12 @@ Stream<MagnetometerEvent> magnetometerEventStream({
 }) {
   return _sensors.magnetometerEventStream(samplingPeriod: samplingPeriod);
 }
+
+/// Returns a broadcast stream of events from the device heart rate monitor at the
+/// given sampling frequency.
+@override
+Stream<HeartRateEvent> heartRateEventStream({
+  Duration samplingPeriod = SensorInterval.normalInterval,
+}) {
+  return _sensors.accelerometerEventStream(samplingPeriod: samplingPeriod);
+}

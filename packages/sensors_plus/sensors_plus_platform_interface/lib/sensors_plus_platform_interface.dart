@@ -13,12 +13,14 @@ import 'src/accelerometer_event.dart';
 import 'src/gyroscope_event.dart';
 import 'src/magnetometer_event.dart';
 import 'src/user_accelerometer_event.dart';
+import 'src/heart_rate_event.dart';
 
 export 'src/accelerometer_event.dart';
 export 'src/gyroscope_event.dart';
 export 'src/magnetometer_event.dart';
 export 'src/user_accelerometer_event.dart';
 export 'src/sensor_interval.dart';
+export 'src/heart_rate_event.dart';
 
 /// The common platform interface for sensors.
 abstract class SensorsPlatform extends PlatformInterface {
@@ -101,5 +103,13 @@ abstract class SensorsPlatform extends PlatformInterface {
     Duration samplingPeriod = SensorInterval.normalInterval,
   }) {
     throw UnimplementedError('magnetometerEvents has not been implemented.');
+  }
+
+  /// Returns a broadcast stream of events from the device heart rate monitor at the
+  /// given sampling frequency.
+  Stream<HeartRateEvent> heartRateEventStream({
+    Duration samplingPeriod = SensorInterval.normalInterval,
+  }) {
+    throw UnimplementedError('heartRateEvents has not been implemented.');
   }
 }

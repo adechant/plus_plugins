@@ -17,11 +17,13 @@ class SensorsPlugin : FlutterPlugin {
     private lateinit var userAccelChannel: EventChannel
     private lateinit var gyroscopeChannel: EventChannel
     private lateinit var magnetometerChannel: EventChannel
+    private lateinit var heartrateChannel: EventChannel
 
     private lateinit var accelerometerStreamHandler: StreamHandlerImpl
     private lateinit var userAccelStreamHandler: StreamHandlerImpl
     private lateinit var gyroscopeStreamHandler: StreamHandlerImpl
     private lateinit var magnetometerStreamHandler: StreamHandlerImpl
+    private lateinit var heartrateStreamHandler: StreamHandlerImpl
 
     override fun onAttachedToEngine(binding: FlutterPluginBinding) {
         setupMethodChannel(binding.binaryMessenger)
@@ -41,6 +43,7 @@ class SensorsPlugin : FlutterPlugin {
                 "setUserAccelerometerSamplingPeriod" -> userAccelStreamHandler
                 "setGyroscopeSamplingPeriod" -> gyroscopeStreamHandler
                 "setMagnetometerSamplingPeriod" -> magnetometerStreamHandler
+                "setHeartrateSamplingPeriod" -> heartrateStreamHandler
                 else -> null
             }
             streamHandler?.samplingPeriod = call.arguments as Int
@@ -86,6 +89,13 @@ class SensorsPlugin : FlutterPlugin {
             Sensor.TYPE_MAGNETIC_FIELD
         )
         magnetometerChannel.setStreamHandler(magnetometerStreamHandler)
+
+        heartrateChannel = EventChannel(messenger, HEARTRATE_CHANNEL_NAME)
+        heartrateStreamHandler = StreamHandlerImpl(
+            sensorsManager,
+            Sensor.TYPE_HEART_RATE
+        )
+        heartrateChannel.setStreamHandler(accelerometerStreamHandler)
     }
 
     private fun teardownEventChannels() {
@@ -93,11 +103,13 @@ class SensorsPlugin : FlutterPlugin {
         userAccelChannel.setStreamHandler(null)
         gyroscopeChannel.setStreamHandler(null)
         magnetometerChannel.setStreamHandler(null)
+        heartrateChannel.setStreamHandler(null)
 
         accelerometerStreamHandler.onCancel(null)
         userAccelStreamHandler.onCancel(null)
         gyroscopeStreamHandler.onCancel(null)
         magnetometerStreamHandler.onCancel(null)
+        heartrateStreamHandler.onCancel(null)
     }
 
     companion object {
@@ -111,5 +123,7 @@ class SensorsPlugin : FlutterPlugin {
             "dev.fluttercommunity.plus/sensors/user_accel"
         private const val MAGNETOMETER_CHANNEL_NAME =
             "dev.fluttercommunity.plus/sensors/magnetometer"
+        private const val HEARTRATE_CHANNEL_NAME =
+            "dev.fluttercommunity.plus/sensors/heartrate"
     }
 }
