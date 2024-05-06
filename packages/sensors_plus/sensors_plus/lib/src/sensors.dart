@@ -73,7 +73,7 @@ class Sensors extends SensorsPlatform {
   /// again, the sampling period of the stream will be update. All previous
   /// listener will also be affected.
   @override
-  Stream<MagnetometerEvent> heartRateEventStream({
+  Stream<HeartRateEvent> heartRateEventStream({
     Duration samplingPeriod = SensorInterval.normalInterval,
   }) {
     return _platform.heartRateEventStream(samplingPeriod: samplingPeriod);

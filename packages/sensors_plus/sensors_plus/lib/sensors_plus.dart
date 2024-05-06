@@ -75,5 +75,5 @@ Stream<MagnetometerEvent> magnetometerEventStream({
 Stream<HeartRateEvent> heartRateEventStream({
   Duration samplingPeriod = SensorInterval.normalInterval,
 }) {
-  return _sensors.accelerometerEventStream(samplingPeriod: samplingPeriod);
+  return _sensors.heartRateEventStream(samplingPeriod: samplingPeriod);
 }
