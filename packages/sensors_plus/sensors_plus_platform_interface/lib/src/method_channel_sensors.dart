@@ -138,7 +138,7 @@ class MethodChannelSensors extends SensorsPlatform {
     return _magnetometerEvents!;
   }
 
-  /// Returns a broadcast stream of events from the device magnetometer at the
+  /// Returns a broadcast stream of events from the device heart rate monitor at the
   /// given sampling frequency.
   @override
   Stream<HeartRateEvent> heartRateEventStream({
