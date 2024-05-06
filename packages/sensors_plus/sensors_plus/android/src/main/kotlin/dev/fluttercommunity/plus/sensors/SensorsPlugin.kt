@@ -23,7 +23,7 @@ class SensorsPlugin : FlutterPlugin {
     private lateinit var userAccelStreamHandler: StreamHandlerImpl
     private lateinit var gyroscopeStreamHandler: StreamHandlerImpl
     private lateinit var magnetometerStreamHandler: StreamHandlerImpl
-    private lateinit var heartrateStreamHandler: StreamHandlerImpl
+    private lateinit var heartRateStreamHandler: StreamHandlerImpl
 
     override fun onAttachedToEngine(binding: FlutterPluginBinding) {
         setupMethodChannel(binding.binaryMessenger)
@@ -43,7 +43,7 @@ class SensorsPlugin : FlutterPlugin {
                 "setUserAccelerometerSamplingPeriod" -> userAccelStreamHandler
                 "setGyroscopeSamplingPeriod" -> gyroscopeStreamHandler
                 "setMagnetometerSamplingPeriod" -> magnetometerStreamHandler
-                "setHeartrateSamplingPeriod" -> heartrateStreamHandler
+                "setHeartRateSamplingPeriod" -> heartRateStreamHandler
                 else -> null
             }
             streamHandler?.samplingPeriod = call.arguments as Int
@@ -91,11 +91,11 @@ class SensorsPlugin : FlutterPlugin {
         magnetometerChannel.setStreamHandler(magnetometerStreamHandler)
 
         heartrateChannel = EventChannel(messenger, HEARTRATE_CHANNEL_NAME)
-        heartrateStreamHandler = StreamHandlerImpl(
+        heartRateStreamHandler = StreamHandlerImpl(
             sensorsManager,
             Sensor.TYPE_HEART_RATE
         )
-        heartrateChannel.setStreamHandler(heartrateStreamHandler)
+        heartrateChannel.setStreamHandler(heartRateStreamHandler)
     }
 
     private fun teardownEventChannels() {
@@ -109,7 +109,7 @@ class SensorsPlugin : FlutterPlugin {
         userAccelStreamHandler.onCancel(null)
         gyroscopeStreamHandler.onCancel(null)
         magnetometerStreamHandler.onCancel(null)
-        heartrateStreamHandler.onCancel(null)
+        heartRateStreamHandler.onCancel(null)
     }
 
     companion object {

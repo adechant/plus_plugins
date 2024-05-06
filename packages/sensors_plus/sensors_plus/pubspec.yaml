@@ -1,7 +1,7 @@
 name: sensors_plus
 description: Flutter plugin for accessing accelerometer, gyroscope,
   magnetometer, and heartrate sensors.
-version: 5.0.7
+version: 5.0.8
 publish_to: none
 
 flutter:
@@ -22,10 +22,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   sensors_plus_platform_interface:
-    git:
-      url: https://github.com/adechant/plus_plugins
-      path: packages/sensors_plus/sensors_plus_platform_interface
-      version: ^1.2.3
+    path: E:/Projects/plus_plugins/packages/sensors_plus/sensors_plus_platform_interface
 dev_dependencies:
   test: ^1.22.0
   integration_test:
