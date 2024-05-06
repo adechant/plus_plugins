@@ -1,7 +1,7 @@
 name: sensors_plus
 description: Flutter plugin for accessing accelerometer, gyroscope,
   magnetometer, and heartrate sensors.
-version: 5.0.6
+version: 5.0.7
 publish_to: none
 
 flutter:

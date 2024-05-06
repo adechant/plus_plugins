@@ -1,6 +1,6 @@
 name: sensors_plus_platform_interface
 description: A common platform interface for the sensors_plus plugin.
-version: 1.2.2
+version: 1.2.3
 
 dependencies:
   flutter:
